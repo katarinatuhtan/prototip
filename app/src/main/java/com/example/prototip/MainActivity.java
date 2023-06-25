@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             buttons[i].setOnClickListener(this);
         }
         rountCount=0;
-        playerOneScore=null;
-        playerTwoScore=null;
+        playerOneScoreCount=0;
+        playerTwoScoreCount=0;
         activePlayer=true;
     }
 
