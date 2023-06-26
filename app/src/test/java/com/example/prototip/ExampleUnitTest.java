@@ -3,6 +3,16 @@ package com.example.prototip;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import android.graphics.Color;
+
+import androidx.test.espresso.Espresso;
+import androidx.test.espresso.action.ViewActions;
+import androidx.test.espresso.matcher.ViewMatchers;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import static org.junit.Assert.*;
 
@@ -47,4 +57,35 @@ public class ExampleUnitTest {
         mainActivity.winningPositions = winningPositions;
 
         Assert.assertFalse(mainActivity.checkWinner());
+    }
+
+    @Test
+    public void playerButtonClick() {
+        // Perform a click on a button with index 0
+        Espresso.onView(ViewMatchers.withId(R.id.btn_0)).perform(ViewActions.click());
+
+        // Verify that the button text has changed to "X"
+        Espresso.onView(ViewMatchers.withId(R.id.btn_0)).check(matches(withText("X")));
+
+        // Verify that the button text color has changed to the expected color
+        Espresso.onView(ViewMatchers.withId(R.id.btn_0))
+                .check(matches(ViewMatchers.hasTextColor(Color.parseColor("#778899"))));
+
+        // Verify that the player status text is displayed and shows the expected text
+        Espresso.onView(ViewMatchers.withId(R.id.playerStatus)).check(matches(isDisplayed()));
+        Espresso.onView(ViewMatchers.withId(R.id.playerStatus))
+                .check(matches(withText("Player one is winning!")));
+    }
+
+    @Test
+    public void playerScoreUpdate() {
+        // Perform some clicks to simulate a game and update the player scores
+        Espresso.onView(ViewMatchers.withId(R.id.btn_0)).perform(ViewActions.click());
+        Espresso.onView(ViewMatchers.withId(R.id.btn_1)).perform(ViewActions.click());
+        Espresso.onView(ViewMatchers.withId(R.id.btn_3)).perform(ViewActions.click());
+        Espresso.onView(ViewMatchers.withId(R.id.btn_4)).perform(ViewActions.click());
+
+        // Verify that the player scores have been updated correctly
+        Espresso.onView(ViewMatchers.withId(R.id.playerOneScore)).check(matches(withText("1")));
+        Espresso.onView(ViewMatchers.withId(R.id.playerTwoScore)).check(matches(withText("0")));
     }}
