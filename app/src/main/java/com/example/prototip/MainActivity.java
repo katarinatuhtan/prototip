@@ -1,15 +1,17 @@
 package com.example.prototip;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.prototip.databinding.ActivityMainBinding;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private TextView playerOneScore;
@@ -17,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView playerStatus;
     private Button[] buttons=new Button[9];
     private Button newGame;
+    ActivityMainBinding binding;
 
     private int playerOneScoreCount, playerTwoScoreCount, rountCount;
     boolean activePlayer;
@@ -33,6 +36,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        String getPlayerOneName = getIntent().getStringExtra("playerOne");
+        String getPlayerTwoName = getIntent().getStringExtra("playerTwo");
+
+        binding.playerOne.setText(getPlayerOneName);
+        binding.playerTwo.setText(getPlayerTwoName);
 
         playerOneScore=(TextView) findViewById(R.id.playerOneScore);
         playerTwoScore=(TextView) findViewById(R.id.playerTwoScore);
@@ -54,6 +65,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        String getPlayerOneName = getIntent().getStringExtra("playerOne");
+        String getPlayerTwoName = getIntent().getStringExtra("playerTwo");
+
+        binding.playerOne.setText(getPlayerOneName);
+        binding.playerTwo.setText(getPlayerTwoName);
+
         if(!((Button)v).getText().toString().equals("")){
             return;
         }
@@ -76,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if(activePlayer) {
             playerOneScoreCount++;
             updatePlayerScore();
-            Toast.makeText(this,"Player one won!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Player one won!", Toast.LENGTH_SHORT).show();
             playAgain();
             }
             else{
