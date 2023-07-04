@@ -12,13 +12,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.prototip.databinding.ActivityMainBinding;
 
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private TextView playerOneScore;
     private TextView playerTwoScore;
     private TextView playerStatus;
     private Button[] buttons=new Button[9];
     private Button newGame;
+
     ActivityMainBinding binding;
 
     private int playerOneScoreCount, playerTwoScoreCount, rountCount;
@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         playerOneScoreCount=0;
         playerTwoScoreCount=0;
         activePlayer=true;
+
     }
 
     @Override
@@ -71,21 +73,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.playerOne.setText(getPlayerOneName);
         binding.playerTwo.setText(getPlayerTwoName);
 
-        if(!((Button)v).getText().toString().equals("")){
+        if (!((Button) v).getText().toString().equals("")) {
             return;
         }
-        String buttonId=v.getResources().getResourceEntryName(v.getId());
-        int gameStatePointer= Integer.parseInt(buttonId.substring(buttonId.length()-1,buttonId.length()));
+        String buttonId = v.getResources().getResourceEntryName(v.getId());
+        int gameStatePointer = Integer.parseInt(buttonId.substring(buttonId.length() - 1, buttonId.length()));
 
-        if(activePlayer){
-            ((Button)v).setText("X");
-            ((Button)v).setTextColor(Color.parseColor("#4e2a59"));
-            gameState[gameStatePointer]=0;
-        }
-        else {
-            ((Button)v).setText("O");
-            ((Button)v).setTextColor(Color.parseColor("#c10c76"));
-            gameState[gameStatePointer]=1;
+        if (activePlayer) {
+            ((Button) v).setText("X");
+            ((Button) v).setTextColor(Color.parseColor("#4e2a59"));
+            gameState[gameStatePointer] = 0;
+        } else {
+            ((Button) v).setText("O");
+            ((Button) v).setTextColor(Color.parseColor("#c10c76"));
+            gameState[gameStatePointer] = 1;
         }
         rountCount++;
 
@@ -93,13 +94,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if(activePlayer) {
             playerOneScoreCount++;
             updatePlayerScore();
-            Toast.makeText(this, "Player one won!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, getPlayerOneName.toString() + " won", Toast.LENGTH_SHORT).show();
+            WinDialog winDialog=new WinDialog(MainActivity.this, getPlayerOneName.toString() + playerOneScore.toString() + " pts", MainActivity.this);
             playAgain();
             }
             else{
                 playerTwoScoreCount++;
                 updatePlayerScore();
-                Toast.makeText(this,"Player two won!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,getPlayerTwoName.toString()+ " won", Toast.LENGTH_SHORT).show();
+                WinDialog winDialog=new WinDialog(MainActivity.this, getPlayerTwoName.toString() + playerTwoScore.toString() + " pts", MainActivity.this);
                 playAgain();
             }
         } else if (rountCount==9) {
@@ -110,9 +113,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         if(playerOneScoreCount > playerTwoScoreCount){
-            playerStatus.setText("Player one is winning!");
+            playerStatus.setText(getPlayerOneName.toString() + " is winning");
         } else if (playerTwoScoreCount>playerOneScoreCount) {
-            playerStatus.setText("Player two is winning!");
+            playerStatus.setText(getPlayerTwoName.toString() + " is winning");
         }
         else {
             playerStatus.setText("");
@@ -143,6 +146,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         playerTwoScore.setText(Integer.toString(playerTwoScoreCount));
     }
     public void playAgain(){
+
         rountCount=0;
         activePlayer=true;
 
