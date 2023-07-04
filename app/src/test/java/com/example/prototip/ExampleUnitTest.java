@@ -14,10 +14,6 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
-import static org.junit.Assert.*;
-
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-
 /**
  * Example local unit test, which will execute on the development machine (host).
  *

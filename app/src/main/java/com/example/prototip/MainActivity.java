@@ -95,14 +95,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             playerOneScoreCount++;
             updatePlayerScore();
             Toast.makeText(MainActivity.this, getPlayerOneName.toString() + " won", Toast.LENGTH_SHORT).show();
-            WinDialog winDialog=new WinDialog(MainActivity.this, getPlayerOneName.toString() + playerOneScore.toString() + " pts", MainActivity.this);
             playAgain();
             }
             else{
                 playerTwoScoreCount++;
                 updatePlayerScore();
                 Toast.makeText(MainActivity.this,getPlayerTwoName.toString()+ " won", Toast.LENGTH_SHORT).show();
-                WinDialog winDialog=new WinDialog(MainActivity.this, getPlayerTwoName.toString() + playerTwoScore.toString() + " pts", MainActivity.this);
                 playAgain();
             }
         } else if (rountCount==9) {

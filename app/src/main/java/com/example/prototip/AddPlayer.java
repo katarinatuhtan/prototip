@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class AddPlayer extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,19 +25,24 @@ public class AddPlayer extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String getPlayerOneName = playerOne.getText().toString();
-                String getPlayerTwoName = playerTwo.getText().toString();
+                String playerOneName = playerOne.getText().toString();
+                String playerTwoName = playerTwo.getText().toString();
 
-                if (getPlayerOneName.isEmpty() || getPlayerTwoName.isEmpty()) {
-                    Toast.makeText(AddPlayer.this, "Please enter player name", Toast.LENGTH_SHORT).show();
+                if (validatePlayerNames(playerOneName, playerTwoName)) {
+                    Toast.makeText(AddPlayer.this, "Please enter player name",
+                            Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent = new Intent(AddPlayer.this, MainActivity.class);
-                    intent.putExtra("playerOne", getPlayerOneName);
-                    intent.putExtra("playerTwo", getPlayerTwoName);
+                    intent.putExtra("playerOne", playerOneName);
+                    intent.putExtra("playerTwo", playerTwoName);
                     startActivity(intent);
                 }
             }
         });
 
+    }
+
+    public boolean validatePlayerNames(String playerOneName, String playerTwoName) {
+        return !playerOneName.isEmpty() && !playerTwoName.isEmpty();
     }
 }
