@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="newGame">#000000</color>
+    <color name="backgroundColor">#c6cbba</color>
+    <color name="textColorP1">#4e2a59</color>
+    <color name="textColorP2">#c10c76</color>
+    <color name="buttonBcg">#f8f6e6</color>
+    <color name="playerName">#808080</color>
+
+   <!--<color name="darkNewGame">#FFFFFF</color>
+    <color name="darkBackgroundColor">#393445</color>
+    <color name="darkTextColorP1">#4e2a59</color>
+    <color name="darkTextColorP2">#c10c76</color>
+    <color name="darkButtonBcg">#070919</color>
+    <color name="darkPlayerName">#7f7f7f</color>-->
+
 </resources>

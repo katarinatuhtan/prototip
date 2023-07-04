@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".AddPlayer"
-    android:background="#c6cbba">
+    android:background="@color/backgroundColor">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
             android:orientation="vertical"
             android:layout_gravity="center_horizontal"
             android:padding="24dp"
-            android:background="#f8f6e6">
+            android:background="@color/buttonBcg">
 
             <TextView
                 android:layout_width="match_parent"
@@ -32,7 +32,7 @@
                 android:textAlignment="center"
                 android:textSize="36sp"
                 android:textStyle="bold"
-                android:textColor="#808080"/>
+                android:textColor="@color/playerName"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                 android:maxLines="1"
                 android:textStyle="italic"
                 android:hint="Enter player one name"
-                android:textColor="#808080"
+                android:textColor="@color/playerName"
                 android:drawablePadding="8dp"/>
 
             <EditText
@@ -57,22 +57,34 @@
                 android:maxLines="1"
                 android:textStyle="italic"
                 android:hint="Enter player two name"
-                android:textColor="#808080"
+                android:textColor="@color/playerName"
                 android:drawablePadding="8dp"/>
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="30dp"
-                android:backgroundTint="#c6cbba"
+                android:backgroundTint="@color/backgroundColor"
                 android:id="@+id/startGameButton"
                 android:text="Start Game"
-                android:textColor="#808080"
+                android:textColor="@color/playerName"
                 android:textSize="18sp"
                 app:cornerRadius = "20dp"/>
 
         </LinearLayout>
 
+
     </androidx.cardview.widget.CardView>
 
+    <!--<ToggleButton
+        android:id="@+id/theme_toggle_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
+        android:textOff="Light"
+        android:textOn="Dark"
+        android:checked="false" />
+-->
 </RelativeLayout>
